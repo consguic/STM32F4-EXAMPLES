@@ -34,7 +34,7 @@ int main(void){
   while (1)
   {
     adcValue = adcRead();
-    newValue = map(adcValue, 2399, 0, 4095, 0);
+    newValue = map(adcValue,4095,0,2399,0);
     MX_TIM1_Init(newValue);
   }
 }
