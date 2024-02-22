@@ -7,7 +7,7 @@ float newValue= 0;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_ADC1_Init(void);
-static void MX_TIM1_Init(uint16_t timPulse);
+static void MX_TIM1_Init(void);
 
 ADC_HandleTypeDef hadc1;
 TIM_HandleTypeDef htim1;
@@ -30,12 +30,17 @@ int main(void){
 
   MX_GPIO_Init();
   MX_ADC1_Init();
+  MX_TIM1_Init();
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
   while (1)
   {
     adcValue = adcRead();
     newValue = map(adcValue,4095,0,2399,0);
-    MX_TIM1_Init(newValue);
+    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_4, newValue);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1, RESET);
+    
   }
 }
 
