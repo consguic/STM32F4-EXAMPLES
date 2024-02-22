@@ -108,7 +108,7 @@ static void MX_ADC1_Init(void)
   }
 }
 
-static void MX_TIM1_Init(uint16_t timPulse)
+static void MX_TIM1_Init(void)
 {
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
@@ -142,7 +142,7 @@ static void MX_TIM1_Init(uint16_t timPulse)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = timPulse;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
