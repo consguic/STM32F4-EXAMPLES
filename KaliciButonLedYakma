@@ -88,6 +88,7 @@ int main(void)
     	if(flag == 0){
     		flag = 1;
     		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, SET);
+        HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1, RESET);
     	}
     	else {
     		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, RESET);
